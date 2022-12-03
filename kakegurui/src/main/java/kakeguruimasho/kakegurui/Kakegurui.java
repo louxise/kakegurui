@@ -25,6 +25,15 @@ public class Kakegurui {
 		
 		System.out.println("Welcome to the game!");
 		
+		System.out.println("Enter your name: ");
+		String name = sc.nextLine();
+		bw.write(name);;
+		bw.newLine();
+		bw.flush();
+		
+		String opponentName = br.readLine();
+		thread.inputName(opponentName); 
+		
 		thread.start();
 		
 		do {
@@ -56,8 +65,13 @@ class Threading extends Thread {
 	private BufferedReader br = null;
 	private int count = 0;
 	private int card = 0;
+	private String name;
 
 	Threading(BufferedReader br) {this.br = br;}
+	
+	public void inputName(String name) {this.name = name;}
+	
+	public String outputName() {return name;}
 	
 	public void setCard(int card) {this.card = card;}
 
@@ -73,7 +87,7 @@ class Threading extends Thread {
 			do {
 				String opponentCard = br.readLine();
 				count += Integer.parseInt(opponentCard);
-				System.out.println("\nYour Opponent Threw " + opponentCard + ". Total: " + count);
+				System.out.println("\n" + name + " Thew " + opponentCard + ". Total: " + count);
 				
 				if (count > 18) System.exit(0);
 				
