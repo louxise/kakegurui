@@ -42,17 +42,27 @@ public class Player {
 				System.exit(0);
 			}
 			
-			System.out.println();
-			System.out.println("Your cards are: " + arr);
-			System.out.print("Throw a card: ");
-			String card = sc.nextLine();
-			thread.setCard(Integer.parseInt(card));
-			thread.setCount(thread.getCard() + thread.getCount());
-			arr.remove(arr.lastIndexOf(Integer.parseInt(card)));;
+			boolean notValid = true;
 			
-			bw.write(card);;
-			bw.newLine();
-			bw.flush();
+			while (notValid) {
+				try {
+					System.out.println();
+					System.out.println("Your cards are: " + arr);
+					System.out.print("Throw a card: ");
+					String card = sc.nextLine();
+					arr.remove(arr.indexOf(Integer.parseInt(card)));
+					thread.setCard(Integer.parseInt(card));
+					thread.setCount(thread.getCard() + thread.getCount());
+					bw.write(card);;
+					bw.newLine();
+					bw.flush();
+					notValid = false;
+				} catch (Exception e) {
+					System.out.println("The Card doesn't exist");
+					System.out.println("Throw Again");
+				}
+			}
+			
 			
 			
 		} while (true); 
