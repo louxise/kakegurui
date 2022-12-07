@@ -96,9 +96,12 @@ class Threading extends Thread {
 			do {
 				String opponentCard = br.readLine();
 				count += Integer.parseInt(opponentCard);
-				System.out.println("\n" + name + " Thew " + opponentCard + ". Total: " + count);
+				System.out.println("\n" + name + " Threw" + opponentCard + ". Total: " + count);
 				
-				if (count > 18) System.exit(0);
+				if (count > 18) {
+					System.out.println("You Win!");
+					System.exit(0);
+				}
 				
 			} while (true);
 		} catch (IOException e) {
